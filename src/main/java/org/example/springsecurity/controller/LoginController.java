@@ -17,19 +17,19 @@ import java.security.Principal;
 public class LoginController {
     private final AccountService accountService;
 
-    @GetMapping("/login")
-    public String login() {
-        return "basic/login";
-    }
+//    @GetMapping("/login")
+//    public String login() {
+//        return "basic/login";
+//    }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute AccountLoginDto loginDto, Principal principal) {
-        log.info("loginDto : {}", loginDto);
-        Boolean islogin = accountService.isValidUser(loginDto, principal);
-        log.info("islogin : {}", islogin);
-        if(islogin) {
-            return "redirect:/";
-        }
-        return "redirect:/login";
-    }
+//    @PostMapping("/login")
+//    public String login(@ModelAttribute AccountLoginDto loginDto, Principal principal) {
+//        log.info("loginDto : {}", loginDto);
+//        Boolean islogin = accountService.isValidUser(loginDto, principal);
+//        log.info("islogin : {}", islogin);
+//        if(islogin) {
+//            return "redirect:/";
+//        }
+//        return "redirect:/login";
+//    }
 }
