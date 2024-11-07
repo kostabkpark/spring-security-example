@@ -13,6 +13,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -29,7 +31,7 @@ public class AccountService implements UserDetailsService {
         }
         return User.builder()
                 .username(account.getUsername())
-                .password("{noop}" + account.getPassword())
+                .password(encoder.encode(account.getPassword()))
                 .roles(account.getRole())
                 .build();
     }
@@ -46,11 +48,16 @@ public class AccountService implements UserDetailsService {
         return findAccount;
     }
 
-    public Boolean isValidUser(AccountLoginDto loginDto) {
-        Account account = accountRepository.findByUsername(loginDto.getUsername());
-        if(account != null && account.checkPassword(loginDto.getPassword(), encoder)) {
+    public Boolean isValidUser(AccountLoginDto loginDto, Principal principal) {
+        log.info("Principal : {}", principal.getName());
+        UserDetails user = loadUserByUsername(loginDto.getUsername());
+        Account account = accountRepository.findByUsername(user.getUsername());
+        if(account.checkPassword(loginDto.getPassword(), encoder)) {
+            log.info("Principal : {}", principal.getName());
+            log.info("Account is valid");
             return true;
         }
+        log.info("Account is not valid");
         return false;
     }
 }
