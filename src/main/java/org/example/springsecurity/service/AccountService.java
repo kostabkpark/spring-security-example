@@ -31,7 +31,7 @@ public class AccountService implements UserDetailsService {
         }
         return User.builder()
                 .username(account.getUsername())
-                .password(encoder.encode(account.getPassword()))
+                .password(account.getPassword())
                 .roles(account.getRole())
                 .build();
     }

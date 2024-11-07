@@ -62,6 +62,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         GrantedAuthority auth = iterator.next();
         String role = auth.getAuthority(); //ROLE_USER or ROLE_ADMIN
 
+        // token  생성,
 
         //DB에 저장 . 사용자 정보 저장
 

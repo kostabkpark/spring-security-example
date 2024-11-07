@@ -19,9 +19,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class SecurityConfig {
-    private final AuthenticationConfiguration authenticationConfiguration;
+//    private final AuthenticationConfiguration authenticationConfiguration;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -29,10 +29,10 @@ public class SecurityConfig {
     }
 
     //AuthenticationManager Bean 등록
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-        return configuration.getAuthenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+//        return configuration.getAuthenticationManager();
+//    }
 
 
 //    @Bean
@@ -64,7 +64,7 @@ public class SecurityConfig {
 
         // 로그인을 처리하는 필터체인에 추가해주기
         //addFilterAt 은 UsernamePasswordAuthenticationFilter 의 자리에 LoginFilter 가 실행되도록 설정하는 것
-        http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration)), UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration)), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

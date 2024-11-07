@@ -17,10 +17,10 @@ import java.security.Principal;
 public class LoginController {
     private final AccountService accountService;
 
-//    @GetMapping("/login")
-//    public String login() {
-//        return "basic/login";
-//    }
+    @GetMapping("/login")
+    public String login() {
+        return "basic/login";
+    }
 
 //    @PostMapping("/login")
 //    public String login(@ModelAttribute AccountLoginDto loginDto, Principal principal) {
