@@ -49,7 +49,7 @@ public class AccountService implements UserDetailsService {
     }
 
     public Boolean isValidUser(AccountLoginDto loginDto, Principal principal) {
-        log.info("Principal : {}", principal.getName());
+       // log.info("Principal : {}", principal.getName());
         UserDetails user = loadUserByUsername(loginDto.getUsername());
         Account account = accountRepository.findByUsername(user.getUsername());
         if(account.checkPassword(loginDto.getPassword(), encoder)) {
